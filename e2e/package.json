@@ -1,0 +1,17 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "scripts": {
+    "e2e": "cypress run",
+    "coverage": "nyc npm run e2e",
+    "open": "cypress open"
+  },
+  "devDependencies": {
+    "@cypress/code-coverage": "3.10.0",
+    "@types/node": "18.11.18",
+    "cypress": "^11.0.1",
+    "nyc": "15.1.0",
+    "start-server-and-test": "^1.14.0",
+    "typescript": "^4.8.4"
+  }
+}

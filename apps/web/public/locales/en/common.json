@@ -1,0 +1,11 @@
+{
+  "Welcome to TJ GLOBAL!": "Welcome to TJ GLOBAL!",
+  "Email": "Email",
+  "Password": "Password",
+  "Login": "Login",
+  "Signup": {
+    "signup": "Signup",
+    "complete": "Registration",
+    "completeDetail": "Thank you for your registaraion with Ticket X. Please check yourr email to complete signup process."
+  }
+}

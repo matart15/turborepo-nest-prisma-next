@@ -1,0 +1,23 @@
+query User($id: uuid = "") {
+  hasura {
+    userByPk(id: $id) {
+      ...user
+    }
+  }
+}
+
+query Users($limit: Int = 10, $offset: Int = 0, $orderBy: [UserOrderBy!] = {}, $where: UserBoolExp = {}) {
+  hasura {
+    user(limit: $limit, offset: $offset, orderBy: $orderBy, where: $where) {
+      ...user
+    }
+  }
+}
+
+mutation UpdateUser($_set: UserSetInput = {}, $pk_columns: UserPkColumnsInput = { id: "" }) {
+  hasura {
+    updateUserByPk(pk_columns: $pk_columns, _set: $_set) {
+      ...user
+    }
+  }
+}

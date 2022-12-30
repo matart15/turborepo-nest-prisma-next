@@ -1,0 +1,69 @@
+{
+  "name": "tj-global",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*",
+      "e2e"
+    ],
+    "nohoist": [
+      "**/@nestjs",
+      "**/@nestjs/**"
+    ]
+  },
+  "scripts": {
+    "todo": "find . -type f -not -path './apps/api/node_modules/*' -not -path './apps/api/dist/*' -not -path './apps/api/src/@generated/*' -not -path './apps/admin/node_modules/*' -not -path './apps/admin/.next/*'  -not -path './apps/web/node_modules/*' -not -path './apps/web/.next/*' -not -path './node_modules/*' -not -path './e2e/node_modules/*' -not -path './.git/*' -not -path './packages/*' | xargs egrep 'TODO:'",
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "rm -rf node_modules && turbo run clean",
+    "tsc": "turbo run tsc",
+    "e2e": "turbo run e2e",
+    "codegen": "graphql-codegen --config graphql/codegen.js",
+    "codegen:watch": "yarn codegen --watch graphql/**/*.gql",
+    "api:dev": "yarn workspace api dev",
+    "api:db:migrate": "yarn workspace api db:migrate",
+    "api:db:seed": "yarn workspace api db:seed",
+    "api:db:reset": "yarn workspace api db:reset",
+    "api:db:deploy": "yarn workspace api db:deploy",
+    "api:prisma:generate": "yarn workspace api prisma:generate",
+    "web:dev": "yarn workspace web dev",
+    "app:dev": "",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.11.6",
+    "@graphql-codegen/typescript": "2.7.3",
+    "@graphql-codegen/typescript-operations": "2.5.3",
+    "@graphql-codegen/typescript-react-apollo": "3.3.3",
+    "eslint-config-custom": "*",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "packageManager": "yarn@1.22.19",
+  "lint-staged": {
+    "apps/admin/**/*.@(ts|tsx)": [
+      "eslint --fix",
+      "prettier --w"
+    ],
+    "apps/web/**/*.@(ts|tsx)": [
+      "eslint --fix",
+      "prettier --w"
+    ],
+    "apps/api/src/**/*.@(ts|tsx)": [
+      "eslint --fix",
+      "prettier --w"
+    ]
+  }
+}

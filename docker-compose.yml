@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14
+    container_name: ticketx_postgres
+    ports:
+      - 5434:5432
+    volumes:
+      - db-store:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=tj-global
+      - POSTGRES_PASSWORD=password
+    networks:
+      - default_network
+  web:
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - default_network
+  admin:
+    build:
+      context: .
+      dockerfile: ./apps/admin/Dockerfile
+    ports:
+      - '3001:3000'
+    networks:
+      - default_network
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    ports:
+      - '4000:4000'
+    networks:
+      - default_network
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/tj-global?schema=public
+      - JWT_SECRET=3EK6FD+o0+c7tzBNVfjpMkNDi2yARAAKzQlk8O2IKoxQu4nF7EdAh8s3TwpHwrdWT6R
+    depends_on:
+      - db
+volumes:
+  db-store:
+networks:
+  default_network:

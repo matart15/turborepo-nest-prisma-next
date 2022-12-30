@@ -1,0 +1,16 @@
+query CurrentUser {
+  currentUser {
+    id
+    email
+  }
+}
+
+mutation SignUpUser($data: UserSignUpInput!) {
+  signUpUser(data: $data)
+}
+
+mutation SignInUser($data: UserSignInInput!) {
+  signInUser(data: $data) {
+    jwtToken
+  }
+}
